@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+}
+header {
+  background-color: cadetblue;
+  height: 50px;
+  margin-bottom: 100px;
+}
+#window1 {
+  border: 1px solid black;
+  margin: auto;
+  width: 100vw;
+  height: 90vh;
+}
+.sliding-window {
+  display: -webkit-inline-box;
+  overflow: auto;
+  align-items: flex-start;
+  position: sticky;
+  margin-top: 50px;
+  top: 0px;
+}
+.sliding-window-child {
+  display: flex;
+  width: 100%;
+}
+#windowchild-1 {
+  background-color: yellow;
+}
+#windowchild-2 {
+  background-color: blue;
+}
+#windowchild-3 {
+  background-color: red;
+}
