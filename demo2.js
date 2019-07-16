@@ -10,18 +10,27 @@ function setUpSlidingWindow(slidingWindow = null) {
   }
   innerTotalWidth = 0;
   for (const child of slidingWindow.children) {
-    console.log(child.getBoundingClientRect());
     innerTotalWidth += child.getBoundingClientRect().width;
   }
-  slidingWindow.parentNode.style.height = 1.5 * innerTotalWidth + "px";
+  slidingWindow.parentNode.style.height = innerTotalWidth + "px";
   slidingWindow.style.bottom = 1.5 * innerTotalWidth;
   prevWindowTopScroll = window.scrollY;
+
   window.addEventListener("scroll", () => {
-    console.log(slidingWindow.getBoundingClientRect().y);
-    if (slidingWindow.getBoundingClientRect().y == 0) {
-      delta = window.scrollY - prevWindowTopScroll;
-      prevWindowTopScroll = window.scrollY;
-      slidingWindow.scrollLeft += delta;
-    }
+    handleSlidingWindowScroll(slidingWindow);
   });
+}
+
+function handleSlidingWindowScroll(slidingWindow) {
+  // console.log(slidingWindow.getBoundingClientRect().y);
+  // if (slidingWindow.prevScrollLeft == slidingWindow.scrollLeft) {
+  // console.log("Not moving anymore");
+  // }
+  console.log(slidingWindow.prevScrollLeft);
+  if (slidingWindow.getBoundingClientRect().y == 0) {
+    delta = window.scrollY - prevWindowTopScroll;
+    prevWindowTopScroll = window.scrollY;
+    slidingWindow.scrollLeft += delta;
+    slidingWindow.prevScrollLeft = slidingWindow.scrollLeft;
+  }
 }
